@@ -158,7 +158,8 @@ CONFIG_SCHEMA = cv.All(
 FollowMeAction = midea_ac_ns.class_("FollowMeAction", automation.Action)
 DisplayToggleAction = midea_ac_ns.class_("DisplayToggleAction", automation.Action)
 SwingStepAction = midea_ac_ns.class_("SwingStepAction", automation.Action)
-LouverTestAction = midea_ac_ns.class_("LouverTestAction", automation.Action)
+VerticalLouverAction = midea_ac_ns.class_("VerticalLouverAction", automation.Action)
+HorizontalLouverAction = midea_ac_ns.class_("HorizontalLouverAction", automation.Action)
 BeeperOnAction = midea_ac_ns.class_("BeeperOnAction", automation.Action)
 BeeperOffAction = midea_ac_ns.class_("BeeperOffAction", automation.Action)
 PowerOnAction = midea_ac_ns.class_("PowerOnAction", automation.Action)
@@ -211,13 +212,34 @@ async def swing_step_to_code(var, config, args):
     pass
 
 
+# up down pos
 @register_action(
-    "louver_test",
-    LouverTestAction,
-    cv.Schema({}),
+    "set_vertical_louver",
+    VerticalLouverAction,
+    cv.Schema(
+        {
+            cv.Required("position"): cv.string,
+        }
+    ),
 )
-async def louver_test_to_code(var, config, args):
-    pass
+async def vertical_louver_to_code(var, config, args):
+    template_ = await cg.templatable(config["position"], args, cg.std_string)
+    cg.add(var.set_position(template_))
+
+
+# left right pos
+@register_action(
+    "set_horizontal_louver",
+    HorizontalLouverAction,
+    cv.Schema(
+        {
+            cv.Required("position"): cv.string,
+        }
+    ),
+)
+async def horizontal_louver_to_code(var, config, args):
+    template_ = await cg.templatable(config["position"], args, cg.std_string)
+    cg.add(var.set_position(template_))
 
 
 # Beeper On action

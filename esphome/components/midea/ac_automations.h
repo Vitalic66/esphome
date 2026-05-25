@@ -31,9 +31,22 @@ template<typename... Ts> class SwingStepAction : public MideaActionBase<Ts...> {
   void play(const Ts &...x) override { this->parent_->do_swing_step(); }
 };
 
-template<typename... Ts> class LouverTestAction : public MideaActionBase<Ts...> {
+template<typename... Ts> class VerticalLouverAction : public MideaActionBase<Ts...> {
  public:
-  void play(const Ts &...x) override { this->parent_->do_louver_test(); }
+  TEMPLATABLE_VALUE(std::string, position)
+
+  void play(const Ts &...x) override {
+    this->parent_->do_vertical_louver(this->position_.value(x...));
+  }
+};
+
+template<typename... Ts> class HorizontalLouverAction : public MideaActionBase<Ts...> {
+ public:
+  TEMPLATABLE_VALUE(std::string, position)
+
+  void play(const Ts &...x) override {
+    this->parent_->do_horizontal_louver(this->position_.value(x...));
+  }
 };
 
 template<typename... Ts> class DisplayToggleAction : public MideaActionBase<Ts...> {
