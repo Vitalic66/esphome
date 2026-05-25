@@ -211,6 +211,15 @@ async def swing_step_to_code(var, config, args):
     pass
 
 
+@register_action(
+    "louver_test",
+    LouverTestAction,
+    cv.Schema({}),
+)
+async def louver_test_to_code(var, config, args):
+    pass
+
+
 # Beeper On action
 @register_action(
     "beeper_on",
