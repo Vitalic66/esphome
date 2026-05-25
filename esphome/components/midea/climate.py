@@ -158,6 +158,7 @@ CONFIG_SCHEMA = cv.All(
 FollowMeAction = midea_ac_ns.class_("FollowMeAction", automation.Action)
 DisplayToggleAction = midea_ac_ns.class_("DisplayToggleAction", automation.Action)
 SwingStepAction = midea_ac_ns.class_("SwingStepAction", automation.Action)
+LouverTestAction = midea_ac_ns.class_("LouverTestAction", automation.Action)
 BeeperOnAction = midea_ac_ns.class_("BeeperOnAction", automation.Action)
 BeeperOffAction = midea_ac_ns.class_("BeeperOffAction", automation.Action)
 PowerOnAction = midea_ac_ns.class_("PowerOnAction", automation.Action)

@@ -31,6 +31,11 @@ template<typename... Ts> class SwingStepAction : public MideaActionBase<Ts...> {
   void play(const Ts &...x) override { this->parent_->do_swing_step(); }
 };
 
+template<typename... Ts> class LouverTestAction : public MideaActionBase<Ts...> {
+ public:
+  void play(const Ts &...x) override { this->parent_->do_louver_test(); }
+};
+
 template<typename... Ts> class DisplayToggleAction : public MideaActionBase<Ts...> {
  public:
   void play(const Ts &...x) override { this->parent_->do_display_toggle(); }

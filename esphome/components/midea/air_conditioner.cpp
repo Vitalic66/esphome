@@ -195,6 +195,18 @@ void AirConditioner::do_display_toggle() {
   }
 }
 
+void AirConditioner::do_louver_test() {
+  const uint8_t frame[] = {
+      0xAA, 0x15, 0xAC, 0x00, 0x00, 0x00, 0x00, 0x00,
+      0x02, 0x02, 0xB0, 0x02, 0x09, 0x00, 0x01, 0x32,
+      0x0A, 0x00, 0x01, 0x32, 0x99, 0xA8
+  };
+
+  ESP_LOGD(Constants::TAG, "Sending louver test frame");
+  this->stream_.write(frame, sizeof(frame));
+  this->stream_.flush();
+}
+
 }  // namespace esphome::midea::ac
 
 #endif  // USE_ARDUINO
